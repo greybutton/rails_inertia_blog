@@ -15,6 +15,9 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  host: <%= ENV['APP_DATABASE_HOST'] || 'localhost' %>
+  username: <%= ENV['APP_DATABASE_USERNAME'] || nil %>
+  password: <%= ENV['APP_DATABASE_PASSWORD'] %>
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -22,7 +25,7 @@ default: &default
 
 development:
   <<: *default
-  database: app_development
+  database: <%= ENV['APP_DATABASE_NAME'] || 'app_development' %>
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -80,6 +83,8 @@ test:
 #
 production:
   <<: *default
-  database: app_production
-  username: app
-  password: <%= ENV["APP_DATABASE_PASSWORD"] %>
+  database: <%= ENV['APP_DATABASE_NAME'] %>
+  username: <%= ENV['APP_DATABASE_USERNAME'] %>
+  password: <%= ENV['APP_DATABASE_PASSWORD'] %>
+  host: <%= ENV['APP_DATABASE_HOST'] %>
+  port: <%= ENV['APP_DATABASE_PORT'] %>

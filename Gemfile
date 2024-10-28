@@ -51,3 +51,5 @@ group :test do
 end
 
 gem "shakapacker", "= 8.0"
+
+gem "foreman", "~> 0.88.1"
