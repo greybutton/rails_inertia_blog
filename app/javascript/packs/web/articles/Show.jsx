@@ -1,11 +1,17 @@
 import React from "react";
 import { Link } from "@inertiajs/react";
 
-const Article = ({ article, edit_web_article_path, web_article_path }) => {
+import CommentForm from "./comments/_Form";
+
+const Article = ({ article, edit_web_article_path, web_article_path, web_article_comments_path }) => {
   const handleDestroy = (e) => {
     if (!confirm("Are you sure?")) {
       e.preventDefault();
     }
+  };
+
+  const handleCommentSubmit = (form, options) => {
+    form.post(web_article_comments_path, options);
   };
 
   return (
@@ -28,6 +34,18 @@ const Article = ({ article, edit_web_article_path, web_article_path }) => {
           </Link>
         </li>
       </ul>
+
+      <h2>Comments</h2>
+      <ul>
+        {article.comments.map((comment) => (
+          <li key={comment.id}>
+            {comment.commenter}: {comment.body}
+          </li>
+        ))}
+      </ul>
+
+      <h2>Add a comment:</h2>
+      <CommentForm onSubmit={handleCommentSubmit} submitText="Add Comment" />
     </>
   );
 };

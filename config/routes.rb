@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   root "home#index"
 
   namespace :web do
-    resources :articles
+    resources :articles do
+      scope module: :articles do
+        resources :comments
+      end
+    end
   end
 end

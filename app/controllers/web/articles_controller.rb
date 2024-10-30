@@ -16,9 +16,10 @@ class Web::ArticlesController < Web::ApplicationController
     @article = Article.find(params[:id])
 
     render inertia: "articles/Show", props: {
-      article: @article,
+      article: @article.as_json(include: :comments),
       edit_web_article_path: edit_web_article_path(@article),
       web_article_path: web_article_path,
+      web_article_comments_path: web_article_comments_path(@article)
     }
   end
 
