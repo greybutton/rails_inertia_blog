@@ -17,6 +17,7 @@ class Web::ArticlesController < Web::ApplicationController
 
     render inertia: "articles/Show", props: {
       article: @article,
+      edit_web_article_path: edit_web_article_path(@article),
     }
   end
 
@@ -36,6 +37,25 @@ class Web::ArticlesController < Web::ApplicationController
       redirect_to web_articles_path
     else
       redirect_to new_web_article_path, inertia: { errors: @article.errors }
+    end
+  end
+
+  def edit
+    @article = Article.find(params[:id])
+
+    render inertia: "articles/Edit", props: {
+      article: @article,
+      web_article_path: web_article_path
+    }
+  end
+
+  def update
+    @article = Article.find(params[:id])
+
+    if @article.update(article_params)
+      redirect_to web_article_path(@article)
+    else
+      redirect_to edit_web_article_path, inertia: { errors: @article.errors }
     end
   end
 
