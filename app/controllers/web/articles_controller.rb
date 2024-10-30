@@ -18,6 +18,7 @@ class Web::ArticlesController < Web::ApplicationController
     render inertia: "articles/Show", props: {
       article: @article,
       edit_web_article_path: edit_web_article_path(@article),
+      web_article_path: web_article_path,
     }
   end
 
@@ -57,6 +58,13 @@ class Web::ArticlesController < Web::ApplicationController
     else
       redirect_to edit_web_article_path, inertia: { errors: @article.errors }
     end
+  end
+
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+
+    redirect_to web_articles_path, status: :see_other
   end
 
   private
