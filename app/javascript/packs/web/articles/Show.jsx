@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "@inertiajs/react";
 
+import { editWebArticlePath, webArticlePath, webArticleCommentsPath } from "web/routes";
+
 import CommentForm from "./comments/_Form";
 
-const Article = ({ article, edit_web_article_path, web_article_path, web_article_comments_path }) => {
+const Article = ({ article }) => {
   const handleDestroy = (e) => {
     if (!confirm("Are you sure?")) {
       e.preventDefault();
@@ -11,7 +13,7 @@ const Article = ({ article, edit_web_article_path, web_article_path, web_article
   };
 
   const handleCommentSubmit = (form, options) => {
-    form.post(web_article_comments_path, options);
+    form.post(webArticleCommentsPath(article), options);
   };
 
   return (
@@ -20,11 +22,11 @@ const Article = ({ article, edit_web_article_path, web_article_path, web_article
       <p>{article.body}</p>
       <ul>
         <li>
-          <Link href={edit_web_article_path}>Edit Article</Link>
+          <Link href={editWebArticlePath(article)}>Edit Article</Link>
         </li>
         <li>
           <Link
-            href={web_article_path}
+            href={webArticlePath(article)}
             onClick={handleDestroy}
             method="delete"
             as="button"

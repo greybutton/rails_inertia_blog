@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "@inertiajs/react";
 
+import { webArticlesPath } from "web/routes";
+
 import Form from "./_Form";
 
-const New = ({ article, web_articles_path }) => {
+const New = ({ article }) => {
   const handleSubmit = (form) => {
-    form.post(web_articles_path);
+    form.post(webArticlesPath());
   };
 
   return (
@@ -16,7 +18,7 @@ const New = ({ article, web_articles_path }) => {
         onSubmit={handleSubmit}
         submitText="Create Article"
       />
-      <Link href={web_articles_path}>List Articles</Link>
+      <Link href={webArticlesPath()}>List Articles</Link>
     </>
   );
 };

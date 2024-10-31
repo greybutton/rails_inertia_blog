@@ -55,3 +55,5 @@ gem "shakapacker", "= 8.0"
 gem "foreman", "~> 0.88.1"
 
 gem "inertia_rails", "~> 3.3"
+
+gem "js-routes", "~> 2.2"

@@ -3,12 +3,7 @@ class Web::ArticlesController < Web::ApplicationController
     @articles = Article.all
 
     render inertia: "articles/Index", props: {
-      articles: @articles.map do |article|
-        article.attributes.merge(
-          web_article_path: web_article_path(article),
-        )
-      end,
-      new_web_article_path: new_web_article_path,
+      articles: @articles,
     }
   end
 
@@ -17,9 +12,6 @@ class Web::ArticlesController < Web::ApplicationController
 
     render inertia: "articles/Show", props: {
       article: @article.as_json(include: :comments),
-      edit_web_article_path: edit_web_article_path(@article),
-      web_article_path: web_article_path,
-      web_article_comments_path: web_article_comments_path(@article)
     }
   end
 
@@ -28,7 +20,6 @@ class Web::ArticlesController < Web::ApplicationController
 
     render inertia: "articles/New", props: {
       article: @article,
-      web_articles_path: web_articles_path
     }
   end
 
@@ -47,7 +38,6 @@ class Web::ArticlesController < Web::ApplicationController
 
     render inertia: "articles/Edit", props: {
       article: @article,
-      web_article_path: web_article_path
     }
   end
 

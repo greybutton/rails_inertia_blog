@@ -1,10 +1,12 @@
 import React from "react";
 
+import { webArticlePath } from "web/routes";
+
 import Form from "./_Form";
 
-const Edit = ({ article, web_article_path }) => {
+const Edit = ({ article }) => {
   const handleSubmit = (form) => {
-    form.put(web_article_path);
+    form.put(webArticlePath(article));
   };
 
   return (
