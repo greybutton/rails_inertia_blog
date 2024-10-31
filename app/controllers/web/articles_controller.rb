@@ -3,7 +3,7 @@ class Web::ArticlesController < Web::ApplicationController
     @articles = Article.all
 
     render inertia: "articles/Index", props: {
-      articles: @articles,
+      articles: serialize(@articles, serializer: Web::ArticleSerializer),
     }
   end
 
@@ -11,7 +11,7 @@ class Web::ArticlesController < Web::ApplicationController
     @article = Article.find(params[:id])
 
     render inertia: "articles/Show", props: {
-      article: @article.as_json(include: :comments),
+      article: serialize(@article, serializer: Web::ArticleShowSerializer),
     }
   end
 
