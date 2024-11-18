@@ -56,6 +56,6 @@ gem "foreman", "~> 0.88.1"
 
 gem "inertia_rails", "~> 3.3"
 
-gem "js-routes", "~> 2.2"
+gem "js-routes", "~> 2.3"
 
 gem "active_model_serializers", "~> 0.10.14"
