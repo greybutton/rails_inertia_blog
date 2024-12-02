@@ -58,4 +58,4 @@ gem "inertia_rails", "~> 3.3"
 
 gem "js-routes", "~> 2.2"
 
-gem "active_model_serializers", "~> 0.10.14"
+gem "active_model_serializers", "~> 0.10.15"
